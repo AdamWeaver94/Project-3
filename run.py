@@ -48,3 +48,11 @@ def place_ships(board):
                          if ship_overlaps(board, row, column, orientation, ship_length) == False
 
                                 if orientation == "H"
+                                    for i in range(column, column + ship_length):
+                                        board[row][i] = "X"
+                                else:
+                                    for i in range(row, row + ship_length):
+                                        board[i][column] = "X"
+                                print_board(PLAYER_BOARD)
+                                break
+                                
