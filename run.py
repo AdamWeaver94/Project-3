@@ -130,6 +130,15 @@ def user_input(place_ships):
                 print('Enter a valid letter between A-J')
         return row, column 
 
+# logic for counter of hits + misses
+def count_hit_ships(board):
+    count = 0
+    for row in board:
+        for column in row:
+            if column == "X":
+                count += 1
+    return count
+
 # logic for players turn and 
 # computer random turn
 def turn(board):
