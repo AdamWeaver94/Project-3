@@ -163,3 +163,37 @@ def turn(board):
         else:
             board[row][column] = "~"
 
+# opening message to the game that also takes in a username.
+def welcome():
+    print("Ocean Warefare")
+    username = input("Type in a username and press return: \n")
+    print(f'\nHi {username}! Please enter ship coordinates.')
+    print('\nX are empty locations, ~ are shots that missed and X are hits'
+          'Be aware that the grid is 10 by 10 so imput between 1 & 10')
+
+place_ships(COMPUTER_BOARD)
+#print_board(COMPUTER_BOARD)
+print_board(PLAYER_BOARD)
+place_ships(PLAYER_BOARD)
+
+# logic for end game
+while True:
+   
+    while True:
+        print("\n -- Player Turn --\n")
+        print('Guess enemy location\n')
+        print_board(PLAYER_GUESS_BOARD)
+        turn(PLAYER_GUESS_BOARD)
+        break
+    if count_hit_ships(PLAYER_GUESS_BOARD) == 17:
+        print("You Win!")
+        break   
+   
+    while True:
+        print("\n-- Computer Turn --\n")
+        turn(COMPUTER_GUESS_BOARD)
+        break           
+    print_board(COMPUTER_GUESS_BOARD)   
+    if count_hit_ships(COMPUTER_GUESS_BOARD) == 17:
+        print("You Loose!")
+        break
