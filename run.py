@@ -1,17 +1,17 @@
 import random
 
 # constants for game
-SHIP_SIZES = [2,3,3,4,5]
-PLAYER_BOARD = [[""] * 10 for i in range(10)]
-COMPUTER_BOARD = [[""] * 10 for i in range(10)]
-PLAYER_GUESS_BOARD = [[""] * 10 for i in range(10)]
-COMPUTER_GUESS_BOARD = [[""] * 10 for i in range(10)]
-LETTERS_TO-NUMBERS = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5, 'G':6, 'H':7, 'I':8, 'J':9}
+SHIP_SIZES = [2, 3, 3, 4, 5]
+PLAYER_BOARD = [[""] * 9 for i in range(9)]
+COMPUTER_BOARD = [[""] * 9 for i in range(9)]
+PLAYER_GUESS_BOARD = [[""] * 9 for i in range(9)]
+COMPUTER_GUESS_BOARD = [[""] * 9 for i in range(9)]
+LETTERS_TO-NUMBERS = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 
+'F':5, 'G':6, 'H':7, 'I':8,}
 
 # generating board with labelled axis 
 def print_board(board):
-    print(" A B C D E F G H I J")
-    print(" +-+-+-+-+-+-+-+-+-+")
+    print(" A B C D E F G H I")
     row_number = 1
     for row in board:
         print("%d|%s|" % (row_number, "|".join(row)))
@@ -26,10 +26,12 @@ def place_ships(board):
 
         while True:
             if board == COMPUTER_BOARD:
-                orientation, row, column = random.choice(["H", "V"]), random.randint(0,9), random.randint(0,9)
+                orientation, row, column = random.choice(["H", "V"]), 
+                random.randint(0,9), random.randint(0,9)
                 if check_ship_fit(size_of_ship, row, column, orientation):
 
-                    if ship_overlaps(board, row, column, orientation, size_of_ship) == False:
+                    if ship_overlaps(board, row, column, 
+                    orientation, size_of_ship) == False:
 
                         if orientation == "H":
                             for i in range(column, column + size_of_ship):
@@ -44,7 +46,8 @@ def place_ships(board):
                 row, column, orientation = user_input(place_ships)
                 if check_ship_fit(size_of_ship, row, column, orientation):
 
-                         if ship_overlaps(board, row, column, orientation, size_of_ship) == False
+                         if ship_overlaps(board, row, 
+                         column, orientation, size_of_ship) == False
 
                                 if orientation == "H"
                                     for i in range(column, column + size_of_ship):
@@ -93,12 +96,12 @@ def user_input(place_ships):
                 print('Enter a valid orientation H or V')
         while True:
             try: 
-                row = input("Enter the row 1-10 of the ship: ")
+                row = input("Enter the row 1-9 of the ship: ")
                 if row in '12345678':
                     row = int(row) - 1
                     break
             except ValueError:
-                print('Enter a valid letter between 1-10')
+                print('Enter a valid letter between 1-9')
         while True:
             try: 
                 column = input("Enter the column of the ship: ").upper()
@@ -111,12 +114,12 @@ def user_input(place_ships):
     else:
         while True:
             try: 
-                row = input("Enter the row 1-10 of the ship: ")
+                row = input("Enter the row 1-9 of the ship: ")
                 if row in '12345678910':
                     row = int(row) - 1
                     break
             except ValueError:
-                print('Enter a valid letter between 1-10')
+                print('Enter a valid letter between 1-9')
         while True:
             try: 
                 column = input("Enter the column of the ship: ").upper()
@@ -124,7 +127,7 @@ def user_input(place_ships):
                     column = LETTERS_TO_NUMBERS[column]
                     break
             except KeyError:
-                print('Enter a valid letter between A-J')
+                print('Enter a valid letter between A-I')
         return row, column 
 
 # logic for counter of hits + misses
@@ -166,7 +169,7 @@ def welcome():
     username = input("Type in a username and press return: \n")
     print(f'\nHi {username}! Please enter ship coordinates.')
     print('\nX are empty locations, ~ are shots that missed and X are hits'
-          'Be aware that the grid is 10 by 10 so imput between 1 & 10')
+          'Be aware that the grid is 9 by 9 so imput between 1 & 9')
 
 place_ships(COMPUTER_BOARD)
 #print_board(COMPUTER_BOARD)
