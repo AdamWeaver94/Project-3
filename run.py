@@ -1,4 +1,4 @@
-import random
+import random import randint
 
 # constants for game
 SHIP_SIZES = [2, 3, 3, 4, 5]
